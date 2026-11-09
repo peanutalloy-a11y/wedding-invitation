@@ -1,0 +1,79 @@
+{
+  "checked": "2026-11-09",
+  "note": "Photos from hotel and The Rocks official pages; local JPEG thumbnails. Booking links do not reserve a room or guarantee availability. Sydney Harbour Hotel is closed until late 2027.",
+  "hotels": [
+    {
+      "name": "Pier One Sydney Harbour",
+      "slug": "pier-one",
+      "source": "https://www.pieronesydneyharbour.com.au/",
+      "photo": "https://www.pieronesydneyharbour.com.au/wp-content/uploads/2019/09/AK-SYDAK-01-Exterior-Harbour-Bridge-View-copy-copy-2-scaled.jpg",
+      "booking": "https://www.marriott.com.au/reservation/availabilitySearch.mi?propertyCode=SYDAK",
+      "credit": "Pier One Sydney Harbour",
+      "alt": "Pier One hotel on Sydney Harbour beneath the bridge"
+    },
+    {
+      "name": "Park Hyatt Sydney",
+      "slug": "park-hyatt",
+      "source": "https://www.therocks.com/stay/park-hyatt-sydney",
+      "photo": "https://www.therocks.com/getmedia/0c2626a7-72be-47fe-9f03-24928f0d3806/Park-Hyatt-003.jpg",
+      "booking": "https://www.hyatt.com/park-hyatt/en-US/sydph-park-hyatt-sydney",
+      "credit": "The Rocks",
+      "alt": "Park Hyatt Sydney waterfront hotel"
+    },
+    {
+      "name": "Shangri-La Sydney",
+      "slug": "shangri-la",
+      "source": "https://www.therocks.com/stay/shangri-la-sydney",
+      "photo": "https://www.therocks.com/getmedia/d21c86b6-123c-4d15-8f4d-39cb385af147/shangri-la-cover-002.jpg",
+      "booking": "https://www.shangri-la.com/sydney/shangrila/",
+      "credit": "The Rocks",
+      "alt": "Shangri-La Sydney hotel and harbour views"
+    },
+    {
+      "name": "Four Seasons Hotel Sydney",
+      "slug": "four-seasons",
+      "source": "https://www.fourseasons.com/sydney/",
+      "photo": "https://www.fourseasons.com/alt/img-opt/~75.701.0,0000-0,0000-1600,0000-900,0000/publish/content/dam/fourseasons/images/web/SYD/SYD_787_aspect16x9.jpg",
+      "booking": "https://reservations.fourseasons.com/en?cawConfig.customBooker=true&generalReservationForm.locationId=SYD708",
+      "credit": "Four Seasons",
+      "alt": "Guest room at Four Seasons Hotel Sydney"
+    },
+    {
+      "name": "Sydney Harbour Hotel",
+      "slug": "sydney-harbour-hotel",
+      "source": "https://therocks.com/stay/sydney-harbour-hotel",
+      "photo": "https://therocks.com/getmedia/a29f5ad2-f8ba-48d0-8616-b599e492f775/The-Rocks-Tenant-SHH-Hero.jpg",
+      "booking": "https://www.crystalbrookcollection.com/sydney-harbour",
+      "credit": "The Rocks",
+      "alt": "Sydney Harbour Hotel before its refurbishment",
+      "closed": true
+    },
+    {
+      "name": "Harbour Rocks Hotel",
+      "slug": "harbour-rocks",
+      "source": "https://www.odehotels.com/harbour-rocks-hotel/",
+      "photo": "https://cdn.odehotels.com/wp-content/uploads/sites/216/2024/09/13022944/8758_ho_00_p_2048x1536-1.jpeg",
+      "booking": "https://www.odehotels.com/harbour-rocks-hotel/",
+      "credit": "Ode Hotels",
+      "alt": "Heritage facade of Harbour Rocks Hotel"
+    },
+    {
+      "name": "The Russell",
+      "slug": "the-russell",
+      "source": "https://www.therussell.com.au/",
+      "photo": "https://www.therussell.com.au/wp-content/uploads/sites/77/2024/11/Main-Banner-6.jpg",
+      "booking": "https://www.secure-hotel-booking.com/d-edge/The-Russell-Boutique-Hotel/JH3X/en-US/RoomSelection",
+      "credit": "The Russell",
+      "alt": "The Russell Boutique Hotel in The Rocks"
+    },
+    {
+      "name": "YHA Sydney Harbour",
+      "slug": "yha-sydney-harbour",
+      "source": "https://www.yha.com.au/hostels/nsw/sydney-surrounds/sydney-harbour/",
+      "photo": "https://www.yha.com.au/contentassets/5708b4fe796e49e4b65ac9adca725e4d/yha-sydney-harbour_rooftop.jpg",
+      "booking": "https://www.yha.com.au/hostels/nsw/sydney-surrounds/sydney-harbour/",
+      "credit": "YHA Australia",
+      "alt": "YHA Sydney Harbour rooftop overlooking Sydney Harbour"
+    }
+  ]
+}
