@@ -157,6 +157,11 @@
   .item .k { font-size: .78rem; letter-spacing: .24em; color: var(--ink-soft); text-transform: uppercase; }
   .item .v { margin-top: .25rem; font-size: 1.1rem; line-height: 1.45; }
   .item .n { margin-top: .45rem; font-size: 1rem; line-height: 1.45; font-style: italic; color: var(--ink-soft); }
+  .dress-palette { margin: .9rem 0 1rem; }
+  .dress-palette figcaption { font-size: .9rem; font-style: italic; color: var(--ink-soft); }
+  .dress-swatches { display: flex; flex-wrap: wrap; gap: .8rem; list-style: none; margin: .65rem 0 0; padding: 0; }
+  .dress-swatches li { display: grid; justify-items: center; gap: .35rem; min-width: 2.8rem; font-size: .78rem; color: var(--ink-soft); }
+  .dress-swatch { display: block; width: 2rem; height: 2rem; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #ffffff30, transparent 75%), var(--swatch); border: 1px solid #786d5026; box-shadow: 0 0 0 3px var(--paper), 0 0 0 4px #b6a27630; }
 
   /* where to stay */
   .stay-intro { max-width: 19rem; font-size: 1.08rem; line-height: 1.5; }
@@ -293,7 +298,7 @@
   .opt input:checked + .opt-box { border-color: var(--gold); }
   .opt input:checked + .opt-box::before { background: var(--gold); }
   .opt input:focus-visible + .opt-box, .chip input:focus-visible + span { outline: 1px solid var(--ink); outline-offset: 3px; }
-  #diet[hidden] { display: none; }
+  .rsvp [hidden] { display: none; }
   .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; }
   .chip { position: relative; cursor: pointer; }
   .chip span { display: inline-block; padding: .3rem .9rem .35rem; border: 1px solid var(--gold-soft); border-radius: 999px; font-size: 1.05rem; line-height: 1.25; transition: background-color .2s ease, color .2s ease; }
@@ -572,7 +577,20 @@ body {text-rendering:optimizeLegibility;}
       </div>
       <div class="item r" style="--d:.45s">
         <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-shirt"/></svg>
-        <div><h3 class="k">Dress code</h3><p class="v">Cocktail attire</p><p class="n">Evenings on the harbour can be breezy, so bring a light layer.</p></div>
+        <div>
+          <h3 class="k">Dress code</h3>
+          <p class="v">Suits for men.<br>Dresses in soft, muted shades of green or yellow for women.</p>
+          <figure class="dress-palette">
+            <figcaption>A little colour inspiration</figcaption>
+            <ul class="dress-swatches" aria-label="Suggested dress colours">
+              <li><span class="dress-swatch" style="--swatch:#B5BEA2" aria-hidden="true"></span>Sage</li>
+              <li><span class="dress-swatch" style="--swatch:#92A58F" aria-hidden="true"></span>Eucalyptus</li>
+              <li><span class="dress-swatch" style="--swatch:#EFE0A1" aria-hidden="true"></span>Butter</li>
+              <li><span class="dress-swatch" style="--swatch:#DBC887" aria-hidden="true"></span>Soft gold</li>
+            </ul>
+          </figure>
+          <p class="n">Evenings on the harbour can be breezy, so bring a light layer.</p>
+        </div>
       </div>
       <div class="item r" style="--d:.55s">
         <svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-gift"/></svg>
@@ -639,8 +657,8 @@ body {text-rendering:optimizeLegibility;}
     <svg class="div" viewBox="0 0 120 16" aria-hidden="true"><use href="#i-div"/></svg>
     <form class="rsvp" id="rsvp" novalidate>
       <label class="field">
-        <span class="lbl">Your name(s)</span>
-        <input type="text" id="r-names" name="names" autocomplete="name" placeholder="e.g. Sam &amp; Alex Lee" required>
+        <span class="lbl">Your name</span>
+        <input type="text" id="r-names" name="names" autocomplete="name" placeholder="Your full name" maxlength="120" required>
       </label>
       <fieldset class="field">
         <legend class="lbl">Will you join us?</legend>
@@ -651,24 +669,52 @@ body {text-rendering:optimizeLegibility;}
           <label class="opt"><input type="radio" name="events" value="none"><span class="opt-box"><span>Regretfully, we can’t attend</span></span></label>
         </div>
       </fieldset>
-      <fieldset class="field" id="diet" hidden>
-        <legend class="lbl">Dietary requirements</legend>
+      <fieldset class="field" id="plus-one" hidden disabled>
+        <legend class="lbl">Bringing a plus-one?</legend>
+        <div class="options">
+          <label class="opt"><input type="radio" name="plusOne" value="no" required><span class="opt-box"><span>Just me</span></span></label>
+          <label class="opt"><input type="radio" name="plusOne" value="yes"><span class="opt-box"><span>Yes, I’m bringing a guest</span></span></label>
+        </div>
+      </fieldset>
+      <fieldset class="field" id="guest-details" hidden disabled>
+        <legend class="lbl">Your plus-one</legend>
+        <label class="field">
+          <span class="lbl-soft">Your guest’s name</span>
+          <input type="text" id="r-guest-name" name="guestName" autocomplete="off" placeholder="Your guest’s full name" maxlength="120" required>
+        </label>
+        <fieldset class="field" style="margin-top:.9rem">
+          <legend class="lbl-soft">Which parts of the day will your guest attend?</legend>
+          <div class="options">
+            <label class="opt"><input type="radio" name="guestEvents" value="both" required><span class="opt-box"><span>Ceremony and reception</span></span></label>
+            <label class="opt"><input type="radio" name="guestEvents" value="ceremony"><span class="opt-box"><span>The ceremony only</span></span></label>
+            <label class="opt"><input type="radio" name="guestEvents" value="reception"><span class="opt-box"><span>The reception only</span></span></label>
+          </div>
+        </fieldset>
+      </fieldset>
+      <fieldset class="field" id="diet" hidden disabled>
+        <legend class="lbl">Your dietary requirements</legend>
         <span class="lbl-soft" style="margin-top:-.4rem">For dinner at the reception</span>
         <div class="chips">
-          <label class="chip"><input type="checkbox" name="diet" value="None"><span>None</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Vegetarian"><span>Vegetarian</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Vegan"><span>Vegan</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Gluten free"><span>Gluten free</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Dairy free"><span>Dairy free</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Nut allergy"><span>Nut allergy</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Seafood allergy"><span>Seafood allergy</span></label>
-          <label class="chip"><input type="checkbox" name="diet" value="Halal"><span>Halal</span></label>
+          <label class="chip"><input type="radio" name="diet" value="None" checked><span>None</span></label>
+          <label class="chip"><input type="radio" name="diet" value="Vegetarian"><span>Vegetarian</span></label>
         </div>
         <label class="field" style="margin-top:.9rem">
-          <span class="lbl-soft">Anything else we should know? Allergies, or who needs what if there are a few of you</span>
-          <textarea id="r-notes" name="notes" rows="2"></textarea>
+          <span class="lbl-soft">Anything else we should know about your meal or allergies?</span>
+          <textarea id="r-notes" name="notes" rows="2" maxlength="1500"></textarea>
         </label>
       </fieldset>
+      <fieldset class="field" id="guest-diet" hidden disabled>
+        <legend class="lbl">Your guest’s dietary requirements</legend>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="guestDietary" value="None" checked><span>None</span></label>
+          <label class="chip"><input type="radio" name="guestDietary" value="Vegetarian"><span>Vegetarian</span></label>
+        </div>
+        <label class="field" style="margin-top:.9rem">
+          <span class="lbl-soft">Anything else we should know about your guest’s meal or allergies?</span>
+          <textarea id="r-guest-notes" name="guestNotes" rows="2" maxlength="1500"></textarea>
+        </label>
+      </fieldset>
+      <p class="lbl-soft" id="r-counts" role="status" aria-live="polite" hidden></p>
       <p class="err" id="r-err" role="alert"></p>
       <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="send">
@@ -687,6 +733,7 @@ body {text-rendering:optimizeLegibility;}
   </div>
 </dialog>
 
+<script src="rsvp/client.js"></script>
 <script>
 /* Where replies go.
    sheetUrl: paste the Apps Script web app address here and every RSVP lands in the Google Sheet.
@@ -775,6 +822,10 @@ window.rsvpGo = function (url) { window.location.href = url; };
   var sheet = document.getElementById('rsvp-sheet');
   var form = document.getElementById('rsvp');
   var diet = document.getElementById('diet');
+  var plusOne = document.getElementById('plus-one');
+  var guestDetails = document.getElementById('guest-details');
+  var guestDiet = document.getElementById('guest-diet');
+  var counts = document.getElementById('r-counts');
   var err = document.getElementById('r-err');
   var btnText = document.getElementById('btn-text');
   var btnEmail = document.getElementById('btn-email');
@@ -796,12 +847,35 @@ window.rsvpGo = function (url) { window.location.href = url; };
   document.getElementById('done-close').addEventListener('click', function () { if (sheet.close) sheet.close(); else sheet.removeAttribute('open'); });
   [btnText, btnEmail].forEach(function (b) { b.addEventListener('click', function () { via = b.getAttribute('data-via'); }); });
 
+  function selected(name) {
+    var input = form.querySelector('input[name="' + name + '"]:checked');
+    return input ? input.value : '';
+  }
+  function attends(events, part) { return events === 'both' || events === part; }
+  function attendance() {
+    var events = selected('events');
+    var bringing = !!events && events !== 'none' && selected('plusOne') === 'yes';
+    var guestEvents = bringing ? selected('guestEvents') : '';
+    return {
+      events: events, bringing: bringing, guestEvents: guestEvents,
+      ceremony: Number(attends(events, 'ceremony')) + Number(attends(guestEvents, 'ceremony')),
+      reception: Number(attends(events, 'reception')) + Number(attends(guestEvents, 'reception'))
+    };
+  }
+  function showField(field, show) { field.hidden = !show; field.disabled = !show; }
+  function updateAttendance() {
+    var reply = attendance();
+    showField(plusOne, !!reply.events && reply.events !== 'none');
+    showField(guestDetails, reply.bringing);
+    showField(diet, attends(reply.events, 'reception'));
+    showField(guestDiet, attends(reply.guestEvents, 'reception'));
+    counts.hidden = !reply.events || (reply.events !== 'none' && !selected('plusOne')) || (reply.bringing && !reply.guestEvents);
+    counts.textContent = reply.events === 'none' ? 'We’ll record that you can’t attend.'
+      : 'Your RSVP: ' + reply.ceremony + ' for the ceremony · ' + reply.reception + ' for the reception';
+  }
   form.addEventListener('change', function (e) {
-    if (e.target.name === 'events') { diet.hidden = !(e.target.value === 'both' || e.target.value === 'reception'); err.textContent = ''; }
-    if (e.target.name === 'diet') {
-      var boxes = form.querySelectorAll('input[name="diet"]');
-      if (e.target.value === 'None' && e.target.checked) boxes.forEach(function (b) { if (b !== e.target) b.checked = false; });
-      else if (e.target.checked) boxes.forEach(function (b) { if (b.value === 'None') b.checked = false; });
+    if (e.target.name === 'events' || e.target.name === 'plusOne' || e.target.name === 'guestEvents') {
+      updateAttendance(); err.textContent = '';
     }
   });
 
@@ -812,20 +886,52 @@ window.rsvpGo = function (url) { window.location.href = url; };
     var ev = form.querySelector('input[name="events"]:checked');
     if (!names) { err.textContent = 'Please add your name first.'; namesEl.focus(); return; }
     if (!ev) { err.textContent = 'Please let us know which parts of the day you can attend.'; return; }
+    var reply = attendance();
+    var guestName = reply.bringing ? document.getElementById('r-guest-name').value.trim() : '';
+    var guestDinner = attends(reply.guestEvents, 'reception');
+    var guestDietary = guestDinner ? selected('guestDietary') : '';
+    var guestNotes = guestDinner ? document.getElementById('r-guest-notes').value.trim() : '';
+    if (ev.value !== 'none' && !selected('plusOne')) {
+      err.textContent = 'Please let us know whether you’re bringing a plus-one.';
+      plusOne.querySelector('input').focus(); return;
+    }
+    if (reply.bringing && !guestName) {
+      err.textContent = 'Please add your guest’s name.'; document.getElementById('r-guest-name').focus(); return;
+    }
+    if (reply.bringing && !reply.guestEvents) {
+      err.textContent = 'Please select which parts of the day your guest will attend.';
+      guestDetails.querySelector('input[type="radio"]').focus(); return;
+    }
     err.textContent = '';
     var dinner = ev.value === 'both' || ev.value === 'reception';
-    var lines = ['RSVP for Jacob & Sejin’s wedding', '', 'Name(s): ' + names, 'Attending: ' + LABELS[ev.value]];
+    var lines = ['RSVP for Jacob & Sejin’s wedding', '', 'Name: ' + names, 'Attending: ' + LABELS[ev.value]];
     if (dinner) {
       var picks = Array.prototype.map.call(form.querySelectorAll('input[name="diet"]:checked'), function (b) { return b.value; });
-      lines.push('Dietary requirements: ' + (picks.length ? picks.join(', ') : 'None'));
+      lines.push('Your dietary requirements: ' + (picks.length ? picks.join(', ') : 'None'));
       var notes = document.getElementById('r-notes').value.trim();
       if (notes) lines.push('Notes: ' + notes);
     }
+    lines.push('Plus-one: ' + (reply.bringing ? 'Yes' : 'No'));
+    if (reply.bringing) {
+      lines.push('Guest name: ' + guestName, 'Guest attending: ' + LABELS[reply.guestEvents]);
+      if (guestDietary) lines.push('Guest dietary requirements: ' + guestDietary);
+      if (guestNotes) lines.push('Guest meal / allergy notes: ' + guestNotes);
+    }
+    lines.push('Ceremony guests: ' + reply.ceremony, 'Reception guests: ' + reply.reception);
     var body = lines.join('\n');
     if (via === 'sheet' && RSVP.sheetUrl) {
       var picks2 = dinner ? Array.prototype.map.call(form.querySelectorAll('input[name="diet"]:checked'), function (b) { return b.value; }) : [];
       var data = new URLSearchParams({
         names: names,
+        events: ev.value,
+        guestEvents: reply.guestEvents,
+        plusOne: reply.bringing ? 'Yes' : 'No',
+        guestName: guestName,
+        guestAttending: reply.bringing ? LABELS[reply.guestEvents] : '',
+        guestDietary: guestDietary,
+        guestNotes: guestNotes,
+        ceremonyCount: String(reply.ceremony),
+        receptionCount: String(reply.reception),
         attending: LABELS[ev.value],
         ceremony: (ev.value === 'both' || ev.value === 'ceremony') ? 'Yes' : 'No',
         reception: dinner ? 'Yes' : 'No',
@@ -835,7 +941,7 @@ window.rsvpGo = function (url) { window.location.href = url; };
       });
       var first = names.split(/\s*(?:&|and|,)\s*/)[0];
       btnSend.disabled = true; btnSend.textContent = 'Sending…';
-      fetch(RSVP.sheetUrl, { method: 'POST', mode: 'no-cors', body: data })
+      RSVPClient.submit(RSVP.sheetUrl, data)
         .then(function () {
           form.hidden = true;
           document.getElementById('done-title').textContent = ev.value === 'none' ? 'Thank you' : 'See you there';
@@ -844,9 +950,11 @@ window.rsvpGo = function (url) { window.location.href = url; };
             : 'Thank you, ' + first + '. Your reply is with us and we can’t wait to celebrate with you.';
           done.hidden = false; done.classList.add('in'); done.focus();
         })
-        .catch(function () {
+        .catch(function (error) {
           btnSend.disabled = false; btnSend.textContent = 'Send my RSVP';
-          err.innerHTML = 'That didn’t go through. Please try again, or <a class="lnk" href="mailto:' + RSVP.email + '?subject=' + encodeURIComponent('RSVP – ' + names) + '&body=' + encodeURIComponent(body) + '">reply by email</a>.';
+          err.textContent = error && error.message && error.name !== 'TypeError' && error.name !== 'AbortError'
+            ? error.message
+            : 'We couldn’t confirm your RSVP was saved. Please try again; resending this form won’t add another copy.';
         });
       return;
     }
